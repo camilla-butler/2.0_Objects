@@ -39,11 +39,14 @@ public class BasicGameApp implements Runnable {
    
 	public BufferStrategy bufferStrategy;
 	public Image astroPic;
+	public Image background;
+	public Image taypic;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private Astronaut astro;
 	private Astronaut joe;
+	private Astronaut taylor;
 
 
    // Main method definition
@@ -65,11 +68,13 @@ public class BasicGameApp implements Runnable {
 		//variable and objects
 		//create (construct) the objects needed for the game and load up
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
+		taypic = Toolkit.getDefaultToolkit().getImage("blondie.jpg");
 		astro = new Astronaut(10, 100);
 		joe = new Astronaut(300, 40);
+		taylor = new Astronaut (200,35);
 		joe.dx=1;
 		joe.dy=0;
-
+	background = Toolkit.getDefaultToolkit().getImage("taytayslay.png");
 	}
 
    
@@ -85,7 +90,7 @@ public class BasicGameApp implements Runnable {
       //for the moment we will loop things forever.
 		while (true) {
 
-         moveThings();  //move all the game objects
+         moveThings();//move all the game objects
          render();  // paint the graphics
          pause(20); // sleep for 10 ms
 		}
@@ -95,8 +100,9 @@ public class BasicGameApp implements Runnable {
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
-		astro.move();
-		joe.move();
+		astro.bounce();
+		joe.bounce();
+		taylor.bounce();
 
 	}
 	
@@ -145,11 +151,12 @@ public class BasicGameApp implements Runnable {
 	private void render() {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
+		g.drawImage(background, 0,0, WIDTH, HEIGHT, null);
 
       //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		g.drawImage(astroPic, joe.xpos, joe.ypos, joe.width, joe.height, null);
-
+		g.drawImage(taypic,taylor.xpos,taylor.ypos,taylor.width, taylor.height, null);
 		g.dispose();
 
 		bufferStrategy.show();
