@@ -55,14 +55,8 @@ public class Astronaut {
 
     }
 
-    public void crash(){
 
-        If(joe.rec.intersects(astro.rec)){
-
-            System.out. println("crash");
-
-        }
-    public void bounce() {
+    public void bounce(){
     if (xpos>940){
         dx=-dx;
         }
