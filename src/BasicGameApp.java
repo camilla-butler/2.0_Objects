@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 //*******************************************************************************
 // Class Definition Section
 
+
 public class BasicGameApp implements Runnable {
 
    //Variable Definition Section
