@@ -91,18 +91,19 @@ public class BasicGameApp implements Runnable {
 
     public void crash() {
 
-        if (joe.rec.intersects(astro.rec)) {
+        if (joe.rec.intersects(astro.rec) && joe.isAlive ==true && astro.isAlive ==true) {
 
             System.out.println("crash");
             astro.dx=1*astro.dx;
             astro.dy= -astro.dy;
             joe.dx=1*joe.dx;
             joe.dy= -joe.dy;
+            joe.isAlive = false;
 
         }
         if (taylor.rec.intersects(joe.rec)) {
 
-            System.out.println("crash");
+            //System.out.println("crash");
 
 
 
@@ -165,10 +166,14 @@ public class BasicGameApp implements Runnable {
         Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
+        g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 
+        if(joe.isAlive == true) {
+            g.drawImage(astroPic, joe.xpos, joe.ypos, joe.width, joe.height, null);
+        }
         //draw the image of the astronaut
         g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
-        g.drawImage(astroPic, joe.xpos, joe.ypos, joe.width, joe.height, null);
+        //g.drawImage(astroPic, joe.xpos, joe.ypos, joe.width, joe.height, null);
         g.drawImage(taypic, taylor.xpos, taylor.ypos, taylor.width, taylor.height, null);
         g.dispose();
 
